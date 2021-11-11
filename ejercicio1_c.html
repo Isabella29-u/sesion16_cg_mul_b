@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OrbitControls Example</title>
+    <title>ejercicio1_c</title>
     <style>
       html, body { margin: 0; padding: 0; overflow: hidden; }
     </style>
   </head>
   <body>
-    <script src="js/three.min.js"></script>
-    <script src="js/controls/OrbitControls.js"></script>
+    <script src="examples/js/three.min.js"></script>
+    <script src="examples/js/controls/OrbitControls.js"></script>
     <script>
 		var scene, aspect, camera, renderer, controls;
 		var startTime = Date.now();
@@ -26,6 +26,13 @@
 			document.body.appendChild( renderer.domElement );
             controls = new THREE.OrbitControls( camera, renderer.domElement );
 			
+
+    			//LUZ PARA QUE EL MATERIAL SE VEA EN LA ESCENA.
+
+   			 var light = new THREE.PointLight(0xFFFFFF); //La luz de la escena con el color a elección.
+   			 light.position.set(-50, 50, 90); //Posición de la luz.
+   			 scene.add(light); //Añadir la luz a la escena.
+
 			//ELEMENTOS DE ESCENA
 			var size = 10;
 			var arrowSize = 1;
@@ -59,11 +66,18 @@
       var arrowY = new THREE.ArrowHelper( y, origin, arrowSize, colorG );
       var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
       
-      var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
-      var geometry = new THREE.CubeGeometry(2, 2, 2);
-      // Create the final object to add to the scene
-      var boxObject = new THREE.Mesh( geometry, material );
-      scene.add( boxObject );
+     //FIGURA 
+     const material = new THREE.MeshLambertMaterial({ color: 0xd5d8a8 }); //Material Lambert con el color original del ejercicio.
+      var t = 1; //Variable para facilitar el uso de los parámetros del cono.
+      const geometry = new THREE.ConeGeometry(t, t, 10); //(radio, altura, segmentos de altura).
+      const cone = new THREE.Mesh(geometry, material); //Añadir los parámetros con el material elegido.
+      scene.add(cone); //Añadir cono.
+      
+      //POSICIÓN CONO
+      cone.position.set(0, 0, 0); //Posición del cono.
+      cone.geometry.rotateX(Math.PI / 2); //Rotación en X del cono.
+      cone.geometry.rotateZ(Math.PI / 2); //Rotación en Z del cono.
+
                
 	  	//AGREGAR A LA ESCENA
       scene.add( gridHelperXZ );
