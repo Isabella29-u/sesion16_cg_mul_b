@@ -67,15 +67,15 @@
       var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
       
      //FIGURA 
-     const material = new THREE.MeshLambertMaterial({ color: 0xd5d8a8 }); //Material Lambert con el color original del ejercicio.
+     material = new THREE.MeshLambertMaterial({color: 0xd5d8a8}); //Material Lambert con el color original del ejercicio.
       var t = 1; //Variable para facilitar el uso de los parámetros del cono.
-      const geometry = new THREE.SphereGeometry( 1, 35, 35 ); //radio, ancho de los segmentos, altura de los segmentos
+      const geometry = new THREE.SphereGeometry( 1, 20, 20 ); //radio, ancho de los segmentos, altura de los segmentos
       const sphere = new THREE.Mesh( geometry, material ); //Añadir los parámetros con el material elegido.
       scene.add(sphere); //Añadir esfera.
       
       //POSICIÓN CONO
-      //cone.position.set(0, 0, 0); //Posición del cono.
-      //cone.geometry.rotateX(Math.PI / 2); //Rotación en X del cono.
+      sphere.position.set(0, 0, 0); //Posición del cono.
+      sphere.scale.set(0.5, 0.5, 3); //Rotación en X del cono.
       //cone.geometry.rotateZ(Math.PI / 2); //Rotación en Z del cono.
 
                
